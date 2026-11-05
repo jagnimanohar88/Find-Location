@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7fb">
+    <meta name="description" content="Share your location with your permission. Your phone number alone never reveals where you are.">
+    <title>Find-Location — Share on your terms</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Find-Location home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M19 10.1c0 5-7 11-7 11s-7-6-7-11a7 7 0 1 1 14 0Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg>
+        </span>
+        <span>find<span class="brand-accent">location</span></span>
+      </a>
+      <div class="topbar-note"><span class="secure-dot"></span> Your location stays yours</div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> LOCATION, WITH PERMISSION</div>
+          <h1 id="page-title">Stay close.<br><span>Stay in control.</span></h1>
+          <p class="hero-description">Share your location when you choose. Your phone number can help identify you, but it can never reveal where you are.</p>
+          <div class="trust-row">
+            <div class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 19 6v5c0 4.7-3 8-7 10-4-2-7-5.3-7-10V6l7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div><strong>Always your choice</strong><span>Sharing is off until you turn it on.</span></div>
+          </div>
+        </div>
+
+        <section class="share-card" aria-labelledby="share-heading">
+          <div class="card-heading">
+            <div>
+              <div class="card-kicker">YOUR SHARING SESSION</div>
+              <h2 id="share-heading">Share my location</h2>
+            </div>
+            <span class="status-pill" id="status-pill"><span class="status-indicator"></span><span id="status-text">Not sharing</span></span>
+          </div>
+          <p class="card-description">Use your own device's location. Nothing is requested until you give permission.</p>
+
+          <form id="share-form" novalidate>
+            <label for="phone">Your mobile number <span class="optional">(demo only)</span></label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.2 3.8h9.6c.8 0 1.4.6 1.4 1.4v13.6c0 .8-.6 1.4-1.4 1.4H7.2c-.8 0-1.4-.6-1.4-1.4V5.2c0-.8.6-1.4 1.4-1.4Z" stroke="currentColor" stroke-width="1.6"/><path d="M10 17.4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 555 000 0000" aria-describedby="phone-help phone-error" required>
+            </div>
+            <p class="field-help" id="phone-help">For this demo, your number is not verified, sent, or saved.</p>
+            <p class="field-error" id="phone-error" aria-live="polite"></p>
+
+            <label class="consent-option">
+              <input id="consent" type="checkbox">
+              <span class="custom-check" aria-hidden="true">
+                <svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8 3 3 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span>I am sharing my own device's location. I understand this demo shows it only on this device and does not send it to anyone.</span>
+            </label>
+
+            <button class="primary-button" id="share-button" type="submit">
+              <span class="button-label">Share my location</span>
+              <svg class="button-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </form>
+
+          <div class="location-result" id="location-result" hidden aria-live="polite">
+            <div class="result-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M19 10.1c0 5-7 11-7 11s-7-6-7-11a7 7 0 1 1 14 0Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+            <div class="result-copy">
+              <strong>Location access is on</strong>
+              <span id="location-details">Getting your location…</span>
+              <span class="updated-at" id="updated-at"></span>
+            </div>
+            <button class="stop-button" id="stop-button" type="button">Stop sharing</button>
+          </div>
+
+          <div class="error-banner" id="location-error" role="alert" hidden></div>
+
+          <div class="privacy-note">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 1 1 8 0v3m-4 4v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span>Your location stays in this browser; it is not sent to the number.</span>
+          </div>
+        </section>
+      </section>
+
+      <section class="how-it-works" aria-label="How location sharing works">
+        <div class="section-title">
+          <span class="eyebrow">A BETTER WAY TO SHARE</span>
+          <h2>Permission comes first.</h2>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-number">01</span>
+            <div class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7.2 3.8h9.6c.8 0 1.4.6 1.4 1.4v13.6c0 .8-.6 1.4-1.4 1.4H7.2c-.8 0-1.4-.6-1.4-1.4V5.2c0-.8.6-1.4 1.4-1.4Z" stroke="currentColor" stroke-width="1.6"/><path d="M10 17.4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Identify yourself</h3>
+            <p>A number can identify an account after verification. It cannot locate a person.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">02</span>
+            <div class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 19 6v5c0 4.7-3 8-7 10-4-2-7-5.3-7-10V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Choose to share</h3>
+            <p>Only the person with the device can grant location access and start a session.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">03</span>
+            <div class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3m0 12v3M3 12h3m12 0h3m-2.8-6.2-2.1 2.1m-8.2 8.2-2.1 2.1m0-12.4 2.1 2.1m8.2 8.2 2.1 2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/></svg>
+            </div>
+            <h3>Stop any time</h3>
+            <p>End sharing whenever you want. Your location is not stored by this prototype.</p>
+          </article>
+        </div>
+      </section>
+
+      <aside class="important-note">
+        <span class="info-icon" aria-hidden="true">i</span>
+        <p><strong>A note about phone numbers</strong> No app can accurately find someone's live location from their number alone. Sharing with another person requires their verified identity and explicit permission.</p>
+      </aside>
+    </main>
+
+    <footer>
+      <a class="brand footer-brand" href="#" aria-label="Find-Location home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M19 10.1c0 5-7 11-7 11s-7-6-7-11a7 7 0 1 1 14 0Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg>
+        </span>
+        <span>find<span class="brand-accent">location</span></span>
+      </a>
+      <span>Built around privacy, not tracking.</span>
+    </footer>
+  </body>
+</html>
