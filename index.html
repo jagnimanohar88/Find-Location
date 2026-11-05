@@ -40,32 +40,38 @@
         <section class="share-card" aria-labelledby="share-heading">
           <div class="card-heading">
             <div>
-              <div class="card-kicker">YOUR SHARING SESSION</div>
-              <h2 id="share-heading">Share my location</h2>
+              <div class="card-kicker">PHONE NUMBER REGION</div>
+              <h2 id="share-heading">Check a number's region</h2>
             </div>
             <span class="status-pill" id="status-pill"><span class="status-indicator"></span><span id="status-text">Not sharing</span></span>
           </div>
-          <p class="card-description">Use your own device's location. Nothing is requested until you give permission.</p>
+          <p class="card-description">An international calling code can suggest a numbering region, not someone's current location. Live location requires permission from that person's device.</p>
 
           <form id="share-form" novalidate>
-            <label for="phone">Your mobile number <span class="optional">(demo only)</span></label>
+            <label for="phone">International phone number</label>
             <div class="input-wrap">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.2 3.8h9.6c.8 0 1.4.6 1.4 1.4v13.6c0 .8-.6 1.4-1.4 1.4H7.2c-.8 0-1.4-.6-1.4-1.4V5.2c0-.8.6-1.4 1.4-1.4Z" stroke="currentColor" stroke-width="1.6"/><path d="M10 17.4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 555 000 0000" aria-describedby="phone-help phone-error" required>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+44 20 1234 5678" aria-describedby="phone-help phone-error" required>
             </div>
-            <p class="field-help" id="phone-help">For this demo, your number is not verified, sent, or saved.</p>
+            <p class="field-help" id="phone-help">Include + and your country calling code. This demo checks the international format only; it does not verify the number.</p>
             <p class="field-error" id="phone-error" aria-live="polite"></p>
+
+            <div class="region-result" id="region-result" hidden aria-live="polite">
+              <span class="region-label">APPROXIMATE NUMBERING REGION</span>
+              <strong id="region-name"></strong>
+              <span id="region-caveat"></span>
+            </div>
 
             <label class="consent-option">
               <input id="consent" type="checkbox">
               <span class="custom-check" aria-hidden="true">
                 <svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8 3 3 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
-              <span>I am sharing my own device's location. I understand this demo shows it only on this device and does not send it to anyone.</span>
+              <span>I am sharing my own device's live location. I understand it is shown only in this browser and is not sent to anyone.</span>
             </label>
 
             <button class="primary-button" id="share-button" type="submit">
-              <span class="button-label">Share my location</span>
+              <span class="button-label">Share my live location</span>
               <svg class="button-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </form>
